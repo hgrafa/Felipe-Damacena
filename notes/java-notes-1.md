@@ -163,3 +163,15 @@ while( contador <= 5 ) {
   contador++;
 }
 ```
+
+```java
+for(/*inicializacao*/; /*verificacao*/; /*atualizacao*/) {
+ // faca algo
+}
+```
+
+```java
+for(int contador = 1; contador <= 5; contador++) {
+  System.out.println("oi")
+}
+```
