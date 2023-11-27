@@ -175,3 +175,101 @@ for(int contador = 1; contador <= 5; contador++) {
   System.out.println("oi")
 }
 ```
+
+- Somando uma sequencia de numeros
+
+```java
+Scanner scanner = new Scanner(System.in);
+int soma = 0;
+
+for(int i=0; i<10; i++) {
+  int valor = scanner.nextInt();
+  soma += valor; // soma = soma + valor
+}
+```
+
+## Vetores/Arrays
+
+- array tem tamanho fixo (e isso nao muda)
+- homogeneo (so tem um tipo pelo array)
+
+```java
+int a = 2;
+
+// array de 7 elementos
+int[] conjunto = {10, 23, 34, 45, 51, 67, 72};
+
+// indexado em zero
+// vetor de tamanho n vai de zero ate n-1
+System.out.println(conjunto[0]); // 1
+System.out.println(conjunto[4]); // 5
+
+// imprimindo todos os valores
+for(int i = 0; i < conjunto.length; i++) {
+  System.out.println(conjunto[i]);
+}
+```
+
+## Funções
+
+- sequencia bem definida de passos
+- pode ter entrada
+- pode ter saida
+- deve ter um unico e claro objetivo
+
+no momento atual:
+
+```java
+public static [retorno] nome([entradas]) {
+  codigo...
+  return [algo(se tiver retorno)]
+}
+```
+
+```java
+public static void sayHello(String name) {
+  if(name == null) 
+    return;
+
+  System.out.println("Hello, " + name);
+}
+
+public static String getHelloMessage(String name) {
+  return "Hello, " + name;
+}
+
+public static void main(String[] args) {
+  sayHello("Felipe"); // Hello, Felipe
+
+  System.out.println(getHelloMessage("Felipe"));
+}
+```
+
+```java
+public static void showMenu() {
+  System.out.println("1 - para somar");
+  System.out.println("2 - para subtrair");
+  System.out.println("3 - para multiplicar");
+  System.out.println("4 - para dividir");
+  System.out.println("5 - para obter o resto");
+  System.out.println("0 - para sair");
+}
+
+public public static void main(String[] args) {
+  while(true) {
+    showMenu();
+    option = scanner.nextInt();
+
+    if(option == 0)
+      break;
+
+
+    if(option == 1) handleSumOption();
+    else if (option == 2) handleSubtractionOption();
+    else if (option == 3) handleProductOption();
+    else if (option == 4) handleDivisionOption();
+    else if (option == 5) handleModuloOption();
+
+  }
+}
+```
