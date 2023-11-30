@@ -273,3 +273,30 @@ public public static void main(String[] args) {
   }
 }
 ```
+
+## Matriz (vetor de vetor)
+
+- Array 2d (bidimensional array)
+
+```java
+int [][] matrix = { {1, 2, 3},
+                    {3, 4, 5},
+                    {5, 6, 7} };
+
+int linhas = 3;
+int colunas = 3;
+
+// (int[])[]
+// int [][] matrix;
+// matrix[linha][coluna]
+
+Sytem.out.println(matrix[0][1]);
+
+for(int i = 0; i < linhas; i++) {
+  for(int j = 0; j < colunas; j++) {
+    Sytem.out.print(matrix[i][j] + " ");
+  }
+
+  Sytem.out.println();
+}
+```
