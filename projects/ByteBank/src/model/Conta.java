@@ -4,23 +4,23 @@ public class Conta {
 
     private static double custoDeOperacao = 3.0;
 
-    private String responsavel;
+    private String titular;
     private double saldo;
 
     public Conta() {
     }
 
-    public Conta(String responsavel, double saldo) {
-        this.responsavel = responsavel;
+    public Conta(String titular, double saldo) {
+        this.titular = titular;
         this.saldo = saldo;
     }
 
-    public String getResponsavel() {
-        return responsavel;
+    public String getTitular() {
+        return titular;
     }
 
-    public void setResponsavel(String responsavel) {
-        this.responsavel = responsavel;
+    public void setTitular(String titular) {
+        this.titular = titular;
     }
 
     public double getSaldo() {
@@ -43,7 +43,7 @@ public class Conta {
 
     @Override
     public String toString() {
-        return "Responsavel: " + responsavel
+        return "Responsavel: " + titular
                 + ", Saldo: R$" + String.format("%.2f", saldo);
     }
 
