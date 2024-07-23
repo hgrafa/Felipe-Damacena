@@ -18,7 +18,8 @@ regras de negocio
 */
 
 public class Main {
-    public static Book insertBook(Scanner scanner) {
+
+    public static void createBook(Scanner scanner, List<Book> books) {
         System.out.print("Titulo do Livro: ");
         String title = scanner.nextLine();
 
@@ -29,7 +30,64 @@ public class Main {
         int numberOfPages = scanner.nextInt();
         scanner.nextLine();
 
-        return new Book(title, author, numberOfPages);
+        Book bookToAdd = new Book(title, author, numberOfPages);
+        books.add(bookToAdd);
+    }
+
+    public static void readBooks(List<Book> books) {
+        for (int i = 0; i < books.size(); i++) {
+            System.out.println(books.get(i));
+        }
+    }
+
+    public static void searchBooksByTitle(Scanner scanner, List<Book> books) {
+        System.out.print("Digite o titulo que deseja buscar: ");
+        String query = scanner.nextLine();
+
+        boolean anyBookFounded = false;
+
+        for (int i = 0; i < books.size(); i++) {
+            Book bookSelected = books.get(i);
+            if(bookSelected.getTitle().contains(query)) {
+                anyBookFounded = true;
+                System.out.println(bookSelected);
+            }
+        }
+
+        if(!anyBookFounded) {
+            System.out.println("nenhum livro encontrado.");
+        }
+
+    }
+
+    public static void deleteWithSearchByTitle(Scanner scanner, List<Book> books) {
+        System.out.print("Digite o titulo que deseja remover: ");
+        String query = scanner.nextLine();
+
+        List<Book> booksFounded = new ArrayList<>();
+
+        for (int i = 0; i < books.size(); i++) {
+            Book bookSelected = books.get(i);
+            if(bookSelected.getTitle().contains(query)) {
+                booksFounded.add(bookSelected);
+            }
+        }
+
+        if(booksFounded.isEmpty()) {
+            System.out.println("nenhum livro encontrado.");
+            return;
+        }
+
+        for (int i = 0; i < booksFounded.size(); i++) {
+            System.out.println("#" + i + " - " + booksFounded.get(i));
+        }
+
+        System.out.print("Qual id do livro que deseja deletar? ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        Book bookToDelete = booksFounded.get(id);
+        books.remove(bookToDelete);
     }
 
     public static void showMenu() {
@@ -46,28 +104,26 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         List<Book> books = new ArrayList<>();
 
-        showMenu();
-        int option = scanner.nextInt();
-        scanner.nextLine();
+        // while -> verifica - faz - verifica - faz - ...
+        // do...while -> faz - verifica - faz - verifica - ...
 
-        while (option != 0) {
-            switch (option) {
-                case 1 -> {
-                    Book bookToAdd = insertBook(scanner);
-                    books.add(bookToAdd);
-                }
-                case 2 -> {
-                    for (int i = 0; i < books.size(); i++) {
-                        System.out.println(books.get(i));
-                    }
-                }
-            }
+        int option;
 
+        do {
             showMenu();
             option = scanner.nextInt();
             scanner.nextLine();
-        }
 
+            switch (option) {
+                case 1 -> createBook(scanner, books);
+                case 2 -> readBooks(books);
+                case 3 -> searchBooksByTitle(scanner, books);
+                case 4 -> deleteWithSearchByTitle(scanner, books);
+                case 0 -> System.out.println("Obrigado por utilizar!");
+                default -> System.out.println("Digite uma opcao valida");
+            }
+
+        } while(option != 0);
 
 
     }
