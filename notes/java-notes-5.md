@@ -50,6 +50,80 @@ List<String> subfrutas = frutas.sublist(1, 3); // ["banana", "pera"]
 List<Integer> numeros = List.of(1, 2, 3, 4, 5);
 List<String> nomes = List.of("pedro", "julia", "alice");
 
-numeros.forEach( numero -> System.out.pritln(numero) );
-nomes.forEach( nome -> System.out.println(nome) )
+numeros.forEach(numero -> System.out.pritln(numero));
+nomes.forEach(nome -> System.out.println(nome));
+
+numeros.forEach(numero -> {
+  int fator = 2;
+  int resultado = fator * numero;
+  System.out.println(resultado);
+})
+```
+
+- filter / allMatch / anyMatch:
+
+> esse aqui pode ser lido como 'tal que'
+
+```java
+boolean jogadorJaCriado1 = jogadores.stream()
+  .filter(jogador -> {
+    boolean temMesmoNome = jogador.getNome().equals(novoJogador.getNome());
+    boolean temMesmoNumCamisa = jogador.getNumCamisa() == novoJogador.getNumCamisa();
+    return temMesmoNome && temMesmoNumCamisa;
+  })
+  .toList()
+  .isEmpty();
+
+boolean jogadorJaCriado2 = jogadores.stream()
+  .filter(jogador -> jogador.isAtivo())
+  .anyMatch(jogador -> {
+    boolean temMesmoNome = jogador.getNome().equals(novoJogador.getNome());
+    boolean temMesmoNumCamisa = jogador.getNumCamisa() == novoJogador.getNumCamisa();
+    return temMesmoNome && temMesmoNumCamisa;
+  });
+
+boolean timeTemTodosOsJogadoresAtivos = time.getJogadores()
+  .stream()
+  .allMatch(jogador -> jogador.isAtivo());
+```
+
+- map:
+
+Function<T, R> : T -> R
+
+```java
+List<Integer> numeros = List.of(1, 2, 3, 4, 5);
+
+List<Integer> dobroDosNumeros = numeros.stream()
+  .map(numero -> 2 * numero)
+  .toList();
+
+List<Integer> idades = usuarios.stream()
+  .map(usuario -> usuario.getIdade())
+  .toList()
+
+usuarios.stream() // Stream<Usuario>
+  .map(usuario -> {
+    UserResponse response = new UserResponse();
+    response.setName(usuario.getName());
+    response.setAge(usuario.getAge());
+    return response;
+  }) // Stream<UserResponse>
+  .toList();
+```
+
+```java
+public class User {
+  private String name;
+  private String email;
+  private String password;
+  private int age;
+  // constructors, getters, setters, ...
+}
+
+public class UserResponse {
+  private String name;
+  private int age;
+  // constructors, getters, setters, ...
+}
 ```
